@@ -1,195 +1,58 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>خارطة التنفيذ العمراني لرؤية حلب الكبرى — التقرير التفاعلي</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#EDEBE0;--ink:#04352E;--ink2:#3d5a52;--panel:#04352E;--card:#0B4A3C;--card2:#062E20;--head:#0F5D4A;--gold:#B9A779;--gold2:#988561;--txt:#F2F0E6;--mut:#9FB5A6;--grn:#1D9E75;--amb:#EF9F27;--blu:#3B8AD4;--pur:#7F77DD;--cor:#D85A30;
- box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-:root:not([data-theme="light"]){}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1a16;--ink:#F2F0E6;--ink2:#9FB5A6}}
-:root[data-theme="dark"]{--bg:#0b1a16;--ink:#F2F0E6;--ink2:#9FB5A6}
-*{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Tajawal','Segoe UI',Tahoma,sans-serif;line-height:1.7;min-height:100vh}
-button{font-family:inherit;cursor:pointer}
-.top{display:flex;align-items:center;gap:16px;padding:12px 22px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;color:var(--gold2);font-weight:800;font-size:18px}
-.brand img{height:44px}
-.tabs{margin-inline-start:auto;display:flex;gap:6px;flex-wrap:wrap}
-.tab{background:none;border:0;color:var(--ink);font-size:15px;padding:8px 14px;border-radius:999px;font-weight:500}
-.tab[aria-selected=true]{background:var(--panel);color:#F2F0E6;font-weight:800}
-.wrap{margin:0 14px 22px;background:var(--panel);border-radius:26px;padding:26px clamp(14px,3vw,34px) 34px;color:var(--txt);position:relative;overflow:hidden;
- background-image:radial-gradient(circle at 12% 8%,rgba(185,167,121,.10),transparent 40%),repeating-linear-gradient(45deg,rgba(217,217,217,.025) 0 2px,transparent 2px 46px),repeating-linear-gradient(-45deg,rgba(217,217,217,.025) 0 2px,transparent 2px 46px)}
-h1{font-size:clamp(22px,3vw,30px);color:var(--gold);font-weight:500;margin:0 0 4px;padding-inline-start:14px;border-inline-start:5px solid var(--gold2)}
-.sub{color:var(--mut);margin:0 0 20px;font-size:14px;padding-inline-start:19px}
-h2{font-size:18px;color:var(--gold);margin:26px 0 12px;font-weight:700;display:flex;align-items:center;gap:10px}
-h2::before{content:"";width:5px;height:22px;background:var(--gold2);border-radius:3px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
-.chip{border:1.5px solid var(--gold2);background:transparent;color:var(--txt);border-radius:999px;padding:7px 14px;font-size:13.5px;transition:.2s}
-.chip[aria-pressed=true]{background:var(--gold2);color:#04352E;font-weight:800}
-.chip:hover{border-color:var(--gold)}
-.toggle{display:inline-flex;gap:8px;align-items:center;color:var(--mut);font-size:13.5px;margin-inline-start:auto}
-.bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px}
-.tw{overflow-x:auto;border-radius:16px;border:1px solid rgba(152,133,97,.45)}
-table{border-collapse:separate;border-spacing:2px;width:100%;min-width:760px;font-size:13.5px}
-th,td{background:var(--card);padding:9px 12px;border-radius:10px;vertical-align:middle;text-align:center}
-th{background:var(--head);color:var(--gold);font-weight:700}
-td.l{background:var(--head);color:var(--gold);font-weight:700;text-align:right;width:170px;position:sticky;right:0}
-td.txt{text-align:right}
-tr.grp td{background:var(--head);color:var(--gold);font-weight:700;padding:5px}
-td.diff{outline:1.5px solid var(--amb);background:#3a3d22}
-td.merge{text-align:right}
-td.merge ul{margin:0;padding-inline-start:18px}
-th.col{cursor:pointer;transition:.2s}
-th.col:hover{filter:brightness(1.2)}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-.card{background:var(--card2);border:1px solid rgba(152,133,97,.45);border-radius:18px;padding:16px 18px}
-label{display:block;color:var(--mut);font-size:13px;margin:8px 0 4px}
-input,select{width:100%;background:#03231E;border:1.5px solid var(--gold2);border-radius:10px;color:var(--txt);padding:9px 12px;font:inherit;font-size:15px}
-.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
-.res div{background:var(--card);border-radius:12px;padding:10px;text-align:center}
-.res b{display:block;font-size:22px;color:var(--gold)}
-.res span{font-size:12px;color:var(--mut)}
-.ok{color:#4fd6a4}.no{color:#ff8a66}
-.note{font-size:12px;color:var(--mut);margin-top:10px}
-details{background:var(--card2);border:1px solid rgba(152,133,97,.4);border-radius:14px;padding:4px 16px;margin-bottom:8px}
-summary{cursor:pointer;color:var(--gold);font-weight:700;padding:8px 0}
-details ul{margin:0 0 10px;padding-inline-start:20px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:16px}
-.kpi{border-radius:14px;padding:10px 14px;text-align:center;font-weight:700;border:1.5px solid;background:var(--card)}
-.feature{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;background:linear-gradient(120deg,#062E20,#0B4A3C);border:1px solid rgba(152,133,97,.5);border-radius:22px;padding:20px;margin-bottom:20px}
-.phone{width:min(250px,60vw);aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:5px solid #02201b;box-shadow:0 0 0 2px var(--gold2),0 20px 40px rgba(0,0,0,.5);background:#000}
-.phone video{width:100%;height:100%;object-fit:cover;display:block}
-.feature h3{font-size:26px;margin:0 0 6px;color:var(--gold)}
-.pill{display:inline-block;border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:800;border:1.5px solid;color:#F2F0E6}
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>المشاريع العمرانية</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/base.css"><style>
+.vtabs{margin-bottom:12px}
+.vp{display:none}.vp.on{display:grid}
+.vgrid{grid-template-columns:auto 1fr;gap:30px;align-items:center;background:linear-gradient(120deg,#062E20,#0B4A3C);border:1px solid var(--line);border-radius:24px;padding:22px}
+.phone{height:min(82vh,720px);aspect-ratio:9/16;border-radius:30px;overflow:hidden;border:6px solid #02201b;box-shadow:0 0 0 2px var(--gold2),0 24px 50px rgba(0,0,0,.55);background:#000}
+.phone video,.wide video{width:100%;height:100%;object-fit:cover;display:block}
+.wide{width:min(100%,820px);aspect-ratio:360/252;border-radius:20px;overflow:hidden;border:5px solid #02201b;box-shadow:0 0 0 2px var(--gold2),0 24px 50px rgba(0,0,0,.55);background:#000}
+.vinfo h3{font-size:clamp(22px,3vw,32px);margin:8px 0;color:var(--gold)}
+.vinfo p{font-size:16px;color:#E4E2D6}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.facts span{background:var(--card);border-radius:10px;padding:4px 12px;font-size:13.5px}
 .pjs{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
-.pj{background:var(--card2);border:1px solid rgba(152,133,97,.45);border-radius:20px;overflow:hidden;cursor:pointer;transition:.25s;text-align:right;color:var(--txt);padding:0;display:flex;flex-direction:column}
+.pj{background:var(--card2);border:1px solid var(--line);border-radius:20px;overflow:hidden;cursor:pointer;transition:.25s;text-align:right;color:var(--ink);padding:0;display:flex;flex-direction:column}
 .pj:hover{transform:translateY(-4px);border-color:var(--gold)}
-.pj .im{height:190px;background-size:cover;background-position:center;position:relative}
+.pj .im{height:200px;background-size:cover;background-position:center;position:relative}
 .pj .im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(2,31,26,.85))}
-.pj .im .pill{position:absolute;top:12px;inset-inline-start:12px;z-index:2;background:rgba(2,31,26,.7)}
-.pj .bd{padding:12px 16px 16px}
-.pj h3{margin:0 0 6px;font-size:18px;color:var(--gold)}
-.facts{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}
-.facts span{background:var(--card);border-radius:8px;padding:3px 9px;color:var(--txt)}
+.pj .im .pill{position:absolute;top:12px;inset-inline-start:12px;z-index:2;background:rgba(2,31,26,.75)}
+.pj .bd{padding:12px 16px 16px}.pj h3{margin:0 0 6px;font-size:18px;color:var(--gold)}
 .art{background:linear-gradient(135deg,#0B4A3C,#062E20);display:flex;align-items:center;justify-content:center;font-size:54px;color:var(--gold2)}
-.modal{position:fixed;inset:0;background:rgba(1,15,12,.88);z-index:50;display:none;overflow:auto;padding:max(16px,env(safe-area-inset-top)) 14px 24px}
-.modal.on{display:block}
-.mbox{max-width:980px;margin:0 auto;background:var(--panel);border:1px solid var(--gold2);border-radius:24px;padding:20px;color:var(--txt)}
+.modal{position:fixed;inset:0;background:rgba(1,15,12,.9);z-index:50;display:none;overflow:auto;padding:16px 14px 24px}.modal.on{display:block}
+.mbox{max-width:980px;margin:0 auto;background:var(--bg);border:1px solid var(--gold2);border-radius:24px;padding:20px}
 .mx{float:left;background:var(--gold2);border:0;border-radius:50%;width:38px;height:38px;font-size:20px;color:#04352E;font-weight:800}
-.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0}
-.gal img{width:100%;height:130px;object-fit:cover;border-radius:12px;cursor:zoom-in;border:1px solid rgba(152,133,97,.5)}
-.big{width:100%;max-height:420px;object-fit:cover;border-radius:16px}
-.dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0}
-.dl dt{color:var(--gold);font-weight:700}.dl dd{margin:0}
-.src{font-size:11.5px;color:var(--mut)}
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:80;display:none;align-items:center;justify-content:center}
-.lb.on{display:flex}.lb img{max-width:96vw;max-height:92vh;border-radius:10px}
-.page{display:none}.page.on{display:block}
-@media(max-width:720px){.feature{grid-template-columns:1fr;justify-items:center;text-align:center}.top{padding:10px 12px}}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0}.gal img{width:100%;height:130px;object-fit:cover;border-radius:12px;cursor:zoom-in;border:1px solid var(--line)}
+.bigimg{width:100%;max-height:420px;object-fit:cover;border-radius:16px;margin-top:14px}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0}.dl dt{color:var(--gold);font-weight:700}.dl dd{margin:0}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:80;display:none;align-items:center;justify-content:center}.lb.on{display:flex}.lb img{max-width:96vw;max-height:92vh;border-radius:10px}
+.jflow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 16px}.jflow .pill{font-size:14px;padding:5px 14px}
+@media(max-width:760px){.vgrid{grid-template-columns:1fr;justify-items:center}}</style></head>
+<body><div class="wrap"><div class="kpis grid g4" id="kp"></div>
+<h2 style="margin-top:8px">الفيديوهات التعريفية</h2>
+<div class="chips vtabs" id="vt"><button class="chip" aria-pressed="true" data-v="rv">رحاب الشهباء</button><button class="chip" aria-pressed="false" data-v="zz">أبراج زمزم</button></div>
+<div class="vp vgrid on" id="rv"><div class="phone"><video id="v1" controls playsinline preload="metadata" poster="assets/rv_tower.jpg"><source src="assets/rehab.mp4" type="video/mp4"></video></div>
+<div class="vinfo"><span class="pill" style="border-color:var(--blu);background:rgba(59,138,212,.35)">إعلان مرتقب</span><h3>فيديو تعريفي — مشروع رحاب الشهباء</h3><p>المحور الغربي لمدينة حلب باتجاه خان العسل: نحو 4,000 وحدة سكنية على ≈ 457 ألف م²، مع مرافق تعليمية وصحية وتجارية ومسجد وحدائق، وتنفيذ على مراحل قابلة للتوسع.</p><div class="facts"><span>≈ 4,000 وحدة</span><span>≈ 457 ألف م²</span><span>خان العسل</span></div><p style="margin-top:14px"><button class="chip" aria-pressed="true" onclick="openPJ('rehab')">تفاصيل المشروع وصوره</button></p></div></div>
+<div class="vp vgrid" id="zz"><div class="wide"><video id="v2" controls playsinline preload="metadata" poster="assets/zamzam_poster.jpg"><source src="assets/zamzam.mp4" type="video/mp4"></video></div>
+<div class="vinfo"><span class="pill" style="border-color:var(--amb);background:rgba(239,159,39,.3)">مطروح للتملك</span><h3>انطلاق مشروع أبراج زمزم</h3><p>مجمع سكني في بشقاتين يضم 18 برجاً بارتفاع 13 طابقاً (≈ 1,800 شقة) على مساحة 75 ألف م²، مع مسابح وملاعب للأطفال ومواقف تتسع لنحو 1,200 سيارة.</p><div class="facts"><span>18 برجاً × 13 طابقاً</span><span>≈ 1,800 شقة</span><span>75 ألف م²</span></div><p style="margin-top:14px"><button class="chip" aria-pressed="true" onclick="openPJ('zamzam')">تفاصيل المشروع وصوره</button></p></div></div>
 
-body{background:#04352E;color:#F2F0E6;padding-top:0}
-.top,h1,.sub{display:none}
-.wrap{margin:0;border-radius:0;background:none;padding:6px 8px 20px}
-.page{display:block!important}
-h2:first-of-type{margin-top:6px}
-</style>
-</head>
-<body>
-<header class="top">
- <div class="brand"><img alt="" src="assets/emblem.png"><span>محافظة حلب</span></div>
- <nav class="tabs" role="tablist">
-  <button class="tab" role="tab" data-p="req" aria-selected="true">الاشتراطات والإجراءات</button>
-  <button class="tab" role="tab" data-p="prj" aria-selected="false">المشاريع العمرانية</button>
- </nav>
-</header>
+<h2>المشاريع العمرانية</h2><div class="chips" id="pf"></div><div class="pjs" id="pjs"></div>
 
-<main class="wrap">
-<!-- ============ REQUIREMENTS ============ -->
-
-
-<!-- ============ PROJECTS ============ -->
-<section class="page" id="prj">
- <h1>المشاريع العمرانية الحالية في حلب</h1>
- <p class="sub">اضغط على أي مشروع لعرض التفاصيل والصور.</p>
- <div class="kpis" id="kpis"></div>
-
- <div class="feature" id="feat">
-  <div class="phone"><video id="vid" controls playsinline preload="metadata" poster="assets/rv_tower.jpg"><source src="assets/rehab.mp4" type="video/mp4"></video></div>
-  <div>
-   <span class="pill" style="border-color:var(--blu);background:rgba(59,138,212,.35)">إعلان مرتقب</span>
-   <h3>فيديو تعريفي — مشروع رحاب الشهباء</h3>
-   <p>المحور الغربي لمدينة حلب باتجاه خان العسل: نحو 4,000 وحدة سكنية على ≈ 457 ألف م²، مع مرافق تعليمية وصحية وتجارية ومسجد وحدائق، وتنفيذ على مراحل قابلة للتوسع.</p>
-   <button class="chip" aria-pressed="true" onclick="openPJ('rehab')">تفاصيل المشروع وصوره</button>
-  </div>
- </div>
-
- <div class="chips" id="pf"></div>
- <div class="pjs" id="pjs"></div>
-</section>
-</main>
-
-<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox" id="mbox"></div></div>
-<div class="lb" id="lb"><img alt="" id="lbi"></div>
-
-<script>
-const B=(k)=>'assets/'+k+'.jpg';
-const TRACKS=[{"group": "المجمع السكني", "type": "ضمن المخطط التنظيمي + دراسة تفصيلية", "short": "مجمع سكني — مع دراسة تفصيلية"}, {"group": "المجمع السكني", "type": "ضمن المخطط التنظيمي دون دراسة تفصيلية", "short": "مجمع سكني — دون دراسة"}, {"group": "التجمع العمراني", "type": "خارج حدود المخططات التنظيمية", "short": "التجمع العمراني"}, {"group": "تجمعات السكن الزراعي", "type": "خارج حدود المخططات التنظيمية", "short": "السكن الزراعي"}];
-const ROWS=[{"l": "الحد الأدنى للمساحة م²", "v": ["3000-30000", "3000-30000 م2", "50000", "30000"]}, {"l": "نسبة الإشغال", "v": ["0.35 (35%)", "0.35 (35%)", "0.35 (35%)", "0.35 (35%)"]}, {"l": "معامل الاستثمار للحيز المخصص للسكن", "v": ["على كامل مساحة الأرض 2.75", "على كامل مساحة الأرض 2.75", "على كامل مساحة الأرض 2.75", "على كامل مساحة الأرض 2.75"]}, {"l": "الصفة التنظيمية", "v": ["متوافقة مع تقديم مخطط موقع و استقامة في حال توفره", "مطابقة للاستعمال المقترح للصفة التخطيطية للمنطقة في المخطط التنظيمي العام و للمخطط التوجيهي لرؤية حلب الكبرى و عدم المساس بمواقع الممشيدات العامة و الحدائق الملحوظة فيها", "متوافقة مع المخطط التوجيهي لرؤية حلب الكبرى", "متوافقة مع المخطط التوجيهي لرؤية حلب الكبرى"]}, {"l": "مواقف السيارات", "v": ["موقف لكل شقة سكنية", "موقف لكل شقة سكنية", "موقف لكل شقة سكنية", "موقف لكل شقة سكنية"]}, {"l": "الوجيبة الملاصقة للجوار", "v": ["من 5- 10 م و تزداد ثلاثة أرباع المتر عن كل طابق يزيد عن ارتفاع نظام الضابطة", "وفق دراسة تخطيطية يتم اعتمادها لاحقاً", "وفق دراسة تخطيطية يتم اعتمادها لاحقاً", "وفق دراسة تخطيطية يتم اعتمادها لاحقاً"]}, {"l": "المساحات الخضراء", "v": ["—", "—", "0.25 (25%)", "0.25 (25%)"]}];
-const CONDS=[{"t": "شروط الموقع", "items": ["عقارات متجاورة متلاصقة لها طريق نافذ على الطرق العامة الرئيسية", "خارج مناطق المنع و المحميات : الأثار - المطارات - الطرق العامة - السكك الحديدية - مسارات السيول", "منسجم مع المخططات التنظيمية و توجهات المخطط التوجيهي لرؤية حلب الكبرى"]}, {"t": "شروط عقارية", "items": ["صحائف عقارية خالية من الإشارات المانعة للتصرف و الدعاوي و الحجوز دون تعد على حقوق الغير أو الأملاك العامة"]}, {"t": "شروط خاصة", "items": ["تحدد وفق البرنامج التخطيطي و المعتمد من لجنة القرار و بما يتناسب مع طبيعة المشروع"]}];
-const PJ=[{"id": "w3", "cat": "big", "name": "مشروع W3 — غرب جمعية الزهراء", "status": "أعمال البنية التحتية", "c": "#1D9E75", "icon": "🏗", "imgs": ["w3_dozer", "w3_plan", "w3_trucks"], "chips": ["≈ 14,000 وحدة سكنية", "مجلس مدينة حلب"], "d": [["الموقع", "بقعة تنظيمية غرب جمعية الزهراء، مدينة حلب"], ["الحجم", "نحو 14,000 وحدة سكنية"], ["الحالة", "بدء أعمال البنية التحتية تمهيداً للبناء"], ["الجهة", "مجلس مدينة حلب"], ["ملاحظة", "ضمن طرح بقع تنظيمية جديدة بعد توقف طويل في المخططات التفصيلية"]], "credit": "الصور: وكالة الفرات للأنباء (FHA) — تُستبدل بصور رسمية عند توفرها."}, {"id": "zamzam", "cat": "big", "name": "أبراج زمزم — بشقاتين", "status": "مطروح للتملك", "c": "#EF9F27", "icon": "🏢", "imgs": ["zamzam"], "chips": ["18 برجاً × 13 طابقاً", "≈ 1,800 شقة", "75 ألف م²"], "d": [["الموقع", "بشقاتين، نحو 10 كم من دوار السلام"], ["الحجم", "75 ألف م² · 18 برجاً × 13 طابقاً ≈ 1,800 شقة"], ["نسبة البناء", "15% والباقي خدمات ومسطحات خضراء"], ["الحالة", "رخصة نظامية وطابو أخضر (بحسب الجهة المسوِّقة)"], ["التملك", "دفعة أولى 25% وتقسيط على 40 شهراً"]], "credit": "الصورة: تصور معماري تسويقي للمشروع (الجهة المسوِّقة)."}, {"id": "rehab", "cat": "big", "name": "رحاب الشهباء", "status": "إعلان مرتقب", "c": "#3B8AD4", "icon": "🏘", "imgs": ["rehab", "rv_blvd", "rv_site", "rv_street", "rv_tower", "rv_park", "rv_home"], "chips": ["≈ 4,000 وحدة", "≈ 457 ألف م²", "المحور الغربي — خان العسل"], "d": [["الموقع", "المحور الغربي لمدينة حلب باتجاه خان العسل"], ["الحجم", "نحو 4,000 وحدة على ≈ 457 ألف م²"], ["المكوّنات", "مرافق تعليمية وصحية وتجارية ومسجد وحدائق"], ["الحالة", "شركة تركية تستعد للإعلان عن التفاصيل"], ["ملاحظة", "تنفيذ على مراحل قابلة للتوسع"]], "video": true, "credit": "الصور: لقطات من الفيديو التعريفي وتصورات معمارية للمشروع."}, {"id": "rural", "cat": "big", "name": "مجمع سكني في ريف حلب الغربي", "status": "وُضع حجر الأساس", "c": "#1D9E75", "icon": "🏡", "imgs": [], "chips": ["≈ 4,000 منزل", "≈ 500 ألف م²", "طريق باب الهوى"], "d": [["الموقع", "على طريق حلب – معبر باب الهوى"], ["الحجم", "نحو 4,000 منزل على ≈ 500 ألف م²"], ["المكوّنات", "مناطق تجارية ومستشفى"], ["الحالة", "وضع حجر الأساس (وفق الأناضول)"], ["ملاحظة", "يلزم التحقق إن كان مشروعاً مستقلاً عن «رحاب الشهباء»"]]}, {"id": "jusoor", "cat": "prog", "name": "برنامج «جسور العمران»", "status": "برنامج محافظة", "c": "#7F77DD", "icon": "🌉", "imgs": [], "chips": ["محافظة حلب", "مساران: انتقال وترميم"], "d": [["الجهة", "محافظة حلب"], ["المسار الأول", "انتقال الملاك الراغبين إلى مجمعات وتجمعات سكنية منظمة"], ["المسار الثاني", "ترميم ومعالجة الأبنية المتضررة"], ["الصلة", "ينسجم مع ترخيص التجمعات العمرانية ضمن رؤية حلب الكبرى"]]}, {"id": "plots", "cat": "prog", "name": "بقع تنظيمية وتطوير عقاري", "status": "قيد الإعداد", "c": "#D85A30", "icon": "🗺", "imgs": [], "chips": ["مجلس مدينة حلب", "الجهة الشرقية للمدينة"], "d": [["الجهة", "مجلس مدينة حلب"], ["الشرق", "إعداد مخططات جديدة في الجهة الشرقية من المدينة"], ["الاستثمار", "مشاريع بصيغة التطوير العقاري تُطرح تدريجياً"], ["الأولوية", "البنى التحتية أولاً ثم مراحل البناء"]]}];
-/* ---------- tabs ---------- */
-function show(p){if(!document.getElementById(p))return;document.querySelectorAll('.page').forEach(e=>e.classList.toggle('on',e.id===p));document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.p===p));try{history.replaceState(null,'','#'+p)}catch(e){}window.scrollTo(0,0)}
-
-/* ---------- requirements ---------- */
-let vis=[0,1,2,3];
-function chips(){const c=document.getElementById('trackChips');c.innerHTML='';TRACKS.forEach((t,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=t.short;b.setAttribute('aria-pressed',vis.includes(i));b.onclick=()=>{if(vis.includes(i)){if(vis.length>1)vis=vis.filter(x=>x!==i)}else vis=[...vis,i].sort();chips();table()};c.appendChild(b)})}
-function table(){
- const diff=document.getElementById('diffTog').checked;let h='<thead><tr><th></th>';
- vis.forEach(i=>h+=`<th class="col">${TRACKS[i].group}<br><small style="font-weight:400;color:#F2F0E6">${TRACKS[i].type}</small></th>`);h+='</tr></thead><tbody>';
- h+=`<tr class="grp"><td colspan="${vis.length+1}">المعايير العمرانية وشروط الموقع</td></tr>`;
- ROWS.forEach(r=>{const vals=vis.map(i=>r.v[i]);const same=vals.every(v=>v===vals[0]);
-  h+=`<tr><td class="l">${r.l}</td>`+vals.map(v=>`<td class="${(diff&&!same)?'diff':''} ${v.length>44?'txt':''}">${v}</td>`).join('')+'</tr>'});
- document.getElementById('tbl').innerHTML=h+'</tbody>'}
-(document.getElementById('diffTog')||{}).onchange=table;
-/* calc */
-const CT=document.getElementById('cTrack');if(CT)TRACKS.forEach((t,i)=>CT.add(new Option(t.group+' — '+t.type,i)));
-const RULE=[{min:3000,max:30000},{min:3000,max:30000},{min:50000,max:null},{min:30000,max:null}];
-const f=n=>Math.round(n).toLocaleString('ar-EG');
-function calc(){const i=+CT.value,a=+document.getElementById('cArea').value||0,u=+document.getElementById('cUnits').value||0,r=RULE[i];
- const okA=a>=r.min&&(r.max==null||a<=r.max);const green=i>=2;
- document.getElementById('cRes').innerHTML=
- `<div><b class="${okA?'ok':'no'}">${okA?'ضمن النطاق':'خارج النطاق'}</b><span>المساحة المطلوبة: ${r.max?f(r.min)+' – '+f(r.max):'من '+f(r.min)} م²</span></div>
-  <div><b>${f(a*.35)}</b><span>م² أقصى مساحة إشغال (35%)</span></div>
-  <div><b>${f(a*2.75)}</b><span>م² إجمالي البناء السكني (معامل 2.75)</span></div>
-  <div><b>${green?f(a*.25):'—'}</b><span>م² مساحات خضراء (25%)</span></div>
-  <div><b>${f(u)}</b><span>موقف سيارات (موقف لكل شقة)</span></div>`}
-['cTrack','cArea','cUnits'].forEach(id=>{const e=document.getElementById(id);if(e)e.oninput=calc});
-function conds(){document.getElementById('conds').innerHTML=CONDS.map((c,i)=>`<details ${i==0?'open':''}><summary>${c.t}</summary><ul>${c.items.map(x=>`<li>${x}</li>`).join('')}</ul></details>`).join('')}
-/* ---------- projects ---------- */
-let filt='all';
-function kpis(){document.getElementById('kpis').innerHTML=[['6 مشاريع وبرامج مرصودة','var(--gold)'],['4 مشاريع سكنية كبرى','var(--grn)'],['≈ 14,000 وحدة — أكبر مشروع (W3)','var(--amb)'],['20% حدّ أدنى للسكن الميسّر','var(--blu)']].map(k=>`<div class="kpi" style="border-color:${k[1]};color:${k[1]}">${k[0]}</div>`).join('')}
-function pfilters(){const L=[['all','الكل'],['big','مشاريع سكنية كبرى'],['prog','برامج وتطوير عقاري']];const c=document.getElementById('pf');c.innerHTML='';L.forEach(([k,t])=>{const b=document.createElement('button');b.className='chip';b.textContent=t;b.setAttribute('aria-pressed',filt===k);b.onclick=()=>{filt=k;pfilters();grid()};c.appendChild(b)})}
-function cover(p){return p.imgs.length?`style="background-image:url(${B(p.imgs[0])})"`:''}
-function grid(){document.getElementById('pjs').innerHTML=PJ.filter(p=>filt==='all'||p.cat===filt).map(p=>`<button class="pj" onclick="openPJ('${p.id}')"><div class="im ${p.imgs.length?'':'art'}" ${cover(p)}>${p.imgs.length?'':p.icon}<span class="pill" style="border-color:${p.c}">${p.status}</span></div><div class="bd"><h3>${p.name}</h3><div class="facts">${p.chips.map(c=>`<span>${c}</span>`).join('')}</div></div></button>`).join('')}
-function openPJ(id){const p=PJ.find(x=>x.id===id);
- let h=`<button class="mx" onclick="closeM()" aria-label="إغلاق">×</button><h1 style="margin-top:0">${p.name}</h1><span class="pill" style="border-color:${p.c};background:${p.c}55">${p.status}</span>`;
- if(p.imgs.length)h+=`<img class="big" style="margin-top:14px" src="${B(p.imgs[0])}" alt="${p.name}" onclick="lb(this.src)">`;
- else h+=`<div class="art" style="height:200px;border-radius:16px;margin-top:14px">${p.icon}</div><p class="note">لا تتوفر صور لهذا المشروع بعد — يمكن إضافتها لاحقاً.</p>`;
- if(p.imgs.length>1)h+=`<div class="gal">${p.imgs.slice(1).map(k=>`<img src="${B(k)}" alt="" onclick="lb(this.src)">`).join('')}</div>`;
- h+=`<dl class="dl">${p.d.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`;
- if(p.credit)h+=`<p class="src">${p.credit}</p>`;
- if(p.video)h+=`<p><button class="chip" aria-pressed="true" onclick="closeM();document.getElementById('feat').scrollIntoView({behavior:'smooth'})">مشاهدة الفيديو التعريفي</button></p>`;
- document.getElementById('mbox').innerHTML=h;document.getElementById('modal').classList.add('on')}
-function closeM(){document.getElementById('modal').classList.remove('on')}
-document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeM()};
-function lb(s){document.getElementById('lbi').src=s;document.getElementById('lb').classList.add('on')}
-document.getElementById('lb').onclick=()=>document.getElementById('lb').classList.remove('on');
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();document.getElementById('lb').classList.remove('on')}});
-['chips','table','calc','conds','kpis','pfilters','grid'].forEach(f=>{try{window[f]&&window[f]()}catch(e){}});
-</script>
-</body></html>
+<section id="jusoor"><div class="kick">شرح مبسّط</div><h2>برنامج «جسور العمران»</h2>
+<p class="lead">ملخّص لحديث م. علاء الدين الجابري، عضو المكتب التنفيذي للإدارة والخدمات والإحصاء في مجلس محافظة حلب، عن علاج السكن العشوائي في حلب.</p>
+<div class="jflow"><span class="pill" style="border-color:var(--cor)">مناطق المخالفات</span><span style="color:var(--gold2)">‹</span><span class="pill" style="border-color:var(--gold2)">برنامج جسور العمران</span><span style="color:var(--gold2)">‹</span><span class="pill" style="border-color:var(--grn)">مجمعات سكنية منظمة</span><span style="color:var(--gold2)">+</span><span class="pill" style="border-color:var(--blu)">إعادة بناء المتضرر</span></div>
+<div class="grid g3"><div class="card rv hv"><span class="num">1</span><h3>ما هو برنامج جسور العمران؟</h3><p>برنامج مقترح من محافظة حلب يعالج مناطق المخالفات (السكن العشوائي) والأبنية التي بُنيت بشكل مخالف، سواء كان فيها مخطط توجيهي أو مخطط تنظيمي.</p></div><div class="card rv hv"><span class="num">2</span><h3>حجم المشكلة</h3><p>في حلب أكثر من 23 منطقة مخالفات، معظمها في المناطق الشرقية، وهي متضررة وتحتاج إلى معالجة سريعة.</p></div><div class="card rv hv"><span class="num">3</span><h3>لماذا جاء البرنامج؟</h3><p>المعالجة عبر المخططات التفصيلية وفق القانونين 23 و26 تستغرق أكثر من خمس سنوات ولا تتحرك ضمن العمل الإجرائي، فجاء البرنامج لتسريع المسار.</p></div><div class="card rv hv"><span class="num">4</span><h3>المسار الأول: التجمعات والمجمعات السكنية</h3><p>تشجيع المواطنين على بناء التجمعات العمرانية والمجمعات السكنية في مناطق المخالفات، ضمن ضوابط ومعايير تضعها المحافظة مع الوحدات الإدارية (مجلس المدينة أو أي مجلس مدينة آخر في المحافظة).</p></div><div class="card rv hv"><span class="num">5</span><h3>المسار الثاني: إعادة بناء المباني المتضررة</h3><p>تسهيل إعادة بناء المباني المتضررة من القصف أو من الزلزال إلى ما كانت عليه.</p></div><div class="card rv hv"><span class="num">6</span><h3>الموافقة الأولية</h3><p>يحصل المواطن على موافقة أولية لبناء مسكنه دون أن يكون ضمن المخالفات. وهي ليست ترخيصاً، بل موافقة مؤقتة ريثما يبدأ التخطيط للمنطقة ويُضبط نظامها وضابطتها السكنية.</p></div></div>
+<div class="quote rv"><b>الصلة برؤية حلب الكبرى:</b> ينسجم البرنامج مع ترخيص التجمعات العمرانية ضمن رؤية حلب الكبرى.</div></section>
+<div class="modal" id="md"><div class="mbox" id="mb"></div></div><div class="lb" id="lb"><img alt="" id="lbi"></div></div><script src="assets/base.js"></script><script>const PJ=[{"id": "w3", "cat": "big", "name": "مشروع W3 — غرب جمعية الزهراء", "status": "أعمال البنية التحتية", "c": "#1D9E75", "icon": "🏗", "imgs": ["w3_dozer", "w3_plan", "w3_trucks"], "chips": ["≈ 14,000 وحدة سكنية", "مجلس مدينة حلب"], "d": [["الموقع", "بقعة تنظيمية غرب جمعية الزهراء، مدينة حلب"], ["الحجم", "نحو 14,000 وحدة سكنية"], ["الحالة", "بدء أعمال البنية التحتية تمهيداً للبناء"], ["الجهة", "مجلس مدينة حلب"], ["ملاحظة", "ضمن طرح بقع تنظيمية جديدة بعد توقف طويل في المخططات التفصيلية"]], "credit": "الصور: وكالة الفرات للأنباء (FHA) — تُستبدل بصور رسمية عند توفرها."}, {"id": "zamzam", "cat": "big", "name": "أبراج زمزم — بشقاتين", "status": "مطروح للتملك", "c": "#EF9F27", "icon": "🏢", "imgs": ["zamzam"], "chips": ["18 برجاً × 13 طابقاً", "≈ 1,800 شقة", "75 ألف م²"], "d": [["الموقع", "بشقاتين، نحو 10 كم من دوار السلام"], ["الحجم", "75 ألف م² · 18 برجاً × 13 طابقاً ≈ 1,800 شقة"], ["نسبة البناء", "15% والباقي خدمات ومسطحات خضراء"], ["الحالة", "رخصة نظامية وطابو أخضر (بحسب الجهة المسوِّقة)"], ["التملك", "دفعة أولى 25% وتقسيط على 40 شهراً"]], "credit": "الصورة: تصور معماري تسويقي للمشروع (الجهة المسوِّقة)."}, {"id": "rehab", "cat": "big", "name": "رحاب الشهباء", "status": "إعلان مرتقب", "c": "#3B8AD4", "icon": "🏘", "imgs": ["rehab", "rv_blvd", "rv_site", "rv_street", "rv_tower", "rv_park", "rv_home"], "chips": ["≈ 4,000 وحدة", "≈ 457 ألف م²", "المحور الغربي — خان العسل"], "d": [["الموقع", "المحور الغربي لمدينة حلب باتجاه خان العسل"], ["الحجم", "نحو 4,000 وحدة على ≈ 457 ألف م²"], ["المكوّنات", "مرافق تعليمية وصحية وتجارية ومسجد وحدائق"], ["الحالة", "شركة تركية تستعد للإعلان عن التفاصيل"], ["ملاحظة", "تنفيذ على مراحل قابلة للتوسع"]], "video": true, "credit": "الصور: لقطات من الفيديو التعريفي وتصورات معمارية للمشروع."}, {"id": "rural", "cat": "big", "name": "مجمع سكني في ريف حلب الغربي", "status": "وُضع حجر الأساس", "c": "#1D9E75", "icon": "🏡", "imgs": [], "chips": ["≈ 4,000 منزل", "≈ 500 ألف م²", "طريق باب الهوى"], "d": [["الموقع", "على طريق حلب – معبر باب الهوى"], ["الحجم", "نحو 4,000 منزل على ≈ 500 ألف م²"], ["المكوّنات", "مناطق تجارية ومستشفى"], ["الحالة", "وضع حجر الأساس (وفق الأناضول)"], ["ملاحظة", "يلزم التحقق إن كان مشروعاً مستقلاً عن «رحاب الشهباء»"]]}, {"id": "jusoor", "cat": "prog", "name": "برنامج «جسور العمران»", "status": "برنامج محافظة", "c": "#7F77DD", "icon": "🌉", "imgs": [], "chips": ["محافظة حلب", "مساران: انتقال وترميم"], "d": [["الجهة", "محافظة حلب"], ["المسار الأول", "انتقال الملاك الراغبين إلى مجمعات وتجمعات سكنية منظمة"], ["المسار الثاني", "ترميم ومعالجة الأبنية المتضررة"], ["الصلة", "ينسجم مع ترخيص التجمعات العمرانية ضمن رؤية حلب الكبرى"]]}, {"id": "plots", "cat": "prog", "name": "بقع تنظيمية وتطوير عقاري", "status": "قيد الإعداد", "c": "#D85A30", "icon": "🗺", "imgs": [], "chips": ["مجلس مدينة حلب", "الجهة الشرقية للمدينة"], "d": [["الجهة", "مجلس مدينة حلب"], ["الشرق", "إعداد مخططات جديدة في الجهة الشرقية من المدينة"], ["الاستثمار", "مشاريع بصيغة التطوير العقاري تُطرح تدريجياً"], ["الأولوية", "البنى التحتية أولاً ثم مراحل البناء"]]}];let filt='all';
+const B=k=>'assets/'+k+'.jpg';
+$('#kp').innerHTML=[['6 مشاريع وبرامج مرصودة','var(--gold)'],['4 مشاريع سكنية كبرى','var(--grn)'],['≈ 14,000 وحدة — أكبر مشروع (W3)','var(--amb)'],['20% حدّ أدنى للسكن الميسّر','var(--blu)']].map(k=>`<div class="card" style="text-align:center;font-weight:800;border-color:${k[1]};color:${k[1]}">${k[0]}</div>`).join('');
+$$('#vt .chip').forEach(b=>b.onclick=()=>{$$('#vt .chip').forEach(x=>x.setAttribute('aria-pressed',x===b));$$('.vp').forEach(p=>p.classList.toggle('on',p.id===b.dataset.v));$$('video').forEach(v=>v.pause())});
+function pf(){const L=[['all','الكل'],['big','مشاريع سكنية كبرى'],['prog','برامج وتطوير عقاري']];const c=$('#pf');c.innerHTML='';L.forEach(([k,t])=>{const b=document.createElement('button');b.className='chip';b.textContent=t;b.setAttribute('aria-pressed',filt===k);b.onclick=()=>{filt=k;pf();grid()};c.appendChild(b)})}
+function grid(){$('#pjs').innerHTML=PJ.filter(p=>filt==='all'||p.cat===filt).map(p=>`<button class="pj" onclick="openPJ('${p.id}')"><div class="im ${p.imgs.length?'':'art'}" ${p.imgs.length?`style="background-image:url(${B(p.imgs[0])})"`:''}>${p.imgs.length?'':p.icon}<span class="pill" style="border-color:${p.c}">${p.status}</span></div><div class="bd"><h3>${p.name}</h3><div class="facts" style="margin-top:4px">${p.chips.map(c=>`<span>${c}</span>`).join('')}</div></div></button>`).join('')}
+function openPJ(id){if(id==='jusoor'){$('#jusoor').scrollIntoView({behavior:'smooth'});return}
+const p=PJ.find(x=>x.id===id);let h=`<button class="mx" onclick="closeM()">×</button><h1 style="font-size:28px">${p.name}</h1><span class="pill" style="border-color:${p.c};background:${p.c}55">${p.status}</span>`;
+if(p.imgs.length)h+=`<img class="bigimg" src="${B(p.imgs[0])}" alt="" onclick="lb(this.src)">`;else h+=`<div class="art" style="height:200px;border-radius:16px;margin-top:14px">${p.icon}</div><p class="src">لا تتوفر صور لهذا المشروع بعد.</p>`;
+if(p.imgs.length>1)h+=`<div class="gal">${p.imgs.slice(1).map(k=>`<img src="${B(k)}" alt="" onclick="lb(this.src)">`).join('')}</div>`;
+h+=`<dl class="dl">${p.d.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`;if(p.credit)h+=`<p class="src">${p.credit}</p>`;
+$('#mb').innerHTML=h;$('#md').classList.add('on')}
+function closeM(){$('#md').classList.remove('on')}$('#md').onclick=e=>{if(e.target.id==='md')closeM()};
+function lb(s){$('#lbi').src=s;$('#lb').classList.add('on')}$('#lb').onclick=()=>$('#lb').classList.remove('on');
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();$('#lb').classList.remove('on')}});pf();grid();</script></body></html>

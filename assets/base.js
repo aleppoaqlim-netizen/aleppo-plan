@@ -1,0 +1,5 @@
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+function reveal(){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');$$('.fill',e.target).forEach(f=>f.style.width=f.dataset.w+'%');$$('[data-count]',e.target).forEach(c=>count(c));io.unobserve(e.target)}}),{threshold:.12});$$('.rv').forEach(e=>io.observe(e))}
+function count(el){const t=+el.dataset.count,s=el.dataset.suffix||'',pre=el.dataset.prefix||'';let n=0;const st=performance.now();(function f(now){const p=Math.min(1,(now-st)/1100);n=Math.round(t*p);el.textContent=pre+n.toLocaleString('en-US')+s;if(p<1)requestAnimationFrame(f)})(st)}
+function spy(){const links=$$('.nav a');const secs=links.map(a=>$(a.getAttribute('href')));const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-30% 0px -60% 0px'});secs.forEach(s=>s&&io.observe(s))}
+addEventListener('DOMContentLoaded',()=>{reveal();if($('.nav'))spy()});
